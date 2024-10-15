@@ -1,14 +1,16 @@
 <?php
     $host = "localhost";
-    $database = "tiscphpdb01";
+    $database = "tincphpdb01";
     $user = "root";
     $pass = "";
     $charset = "utf8";
     $port = "3306";
-
-    try {
+ 
+    try{
         $conn = new mysqli($host, $user, $pass, $database, $port);
-        mysqli_set_charset($conn,$charset);
-    }catch(trhowable $th){
-        die("Atenção rolou um ERRO, cara! ".$th);
+        mysqli_set_charset($conn, $charset);
     }
+    catch (Throwable $th){
+        die("Atenção rolou um ERRO".$th);
+    }
+    ?>

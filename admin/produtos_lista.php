@@ -1,4 +1,10 @@
-<!-- CONECTAR NO BANCO E SELECIONAR AS INFORMAÇÕES -->
+<?php
+
+include "../class/connect.php";
+
+
+
+?>
 
 
 <!DOCTYPE html>
@@ -65,7 +71,7 @@
                             </a>
                                 <!-- não mostrar o botão excluir se o produto estiver em destaque -->
                                 <?php  
-                                    $regra = $conn->query("select destaque from vw_produtos where id =".$row['id']);
+                                    $regra = $conn->query("SELECT destaque from vw_produtos where id =".$row['id']);
                                     $regraRow = $regra->fetch_assoc();
                                 ?>
 
