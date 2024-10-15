@@ -1,9 +1,9 @@
 -- Database: 
 CREATE DATABASE
-	IF NOT EXISTS `tincphpdb01`
+	IF NOT EXISTS `tiscphpdb01`
     DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
     
-USE `tincphpdb01`;
+USE `tiscphpdb01`;
 
 -- --------------------------------------------------------
 -- Estrutura da tabela `produtos`

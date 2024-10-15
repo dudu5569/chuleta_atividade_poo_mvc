@@ -1,4 +1,8 @@
-<!-- CONECTAR COM O BANCO E SELECIONAR AS INFORMAÇÕES -->
+<?php
+include "../conn/connect.php";
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
