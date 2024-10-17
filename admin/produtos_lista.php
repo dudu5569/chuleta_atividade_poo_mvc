@@ -1,6 +1,29 @@
 <?php
 
 include "../class/connect.php";
+include "acesso_com.php";
+class Listar{
+    private $row;
+    
+    
+    public function listarRotulo($id){
+    global $conn;
+    $stmt = $conn->prepare("SELECT rotulo FROM vw_produtos WHERE id = ?");
+    $stmt->bind_param("i",$id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if($result->num_rows > 0){
+        $row = $result->fetch_assoc();
+        return $row['rotulo'];
+    }else{
+        return null;
+    }
+}
+
+}
+
+$listar = new Listar();
 
 
 
@@ -38,18 +61,31 @@ include "../class/connect.php";
             
             <tbody> <!-- início corpo da tabela -->
            	        <!-- início estrutura repetição -->
+                       <?php 
+                $stmt = $conn->query("SELECT * FROM vw_produtos"); // Fetch all products
+                if($stmt->num_rows > 0) {
+                    while ($row = $stmt->fetch_assoc()) { 
+                ?>
                 <!-- COMEÇO DO LAÇO -->
                     <tr>
                         <td class="hidden">
-                            <!-- ID -->
+                            <?php echo $row['id']; ?>
                         </td>
                         <td>
-                            <!-- RÓTULO -->
+                            <?php echo $row['rotulo']; ?>
                             <span class="visible-xs"></span>
                             <span class="hidden-xs"></span>
                         </td>
                         <td>
-                            <!-- INFORMAÇÃO -->
+                            <?php
+                            if ($row['destaque']=='Sim'){
+                                echo '<span class=""glyphicon glyphicon-star text-danger" aria-hidden="true"></span>';
+                            }else{
+                                echo '<span class="glyphicon glyphicon-ok text-sucess" aria-hidden="true"></span>';
+                            }
+                            echo '&nbsp';
+                            echo $row['descricao'];
+                            ?>
                         </td>
                         <td>
                             <?php echo $row['resumo']; ?>
@@ -71,7 +107,7 @@ include "../class/connect.php";
                             </a>
                                 <!-- não mostrar o botão excluir se o produto estiver em destaque -->
                                 <?php  
-                                    $regra = $conn->query("SELECT destaque from vw_produtos where id =".$row['id']);
+                                    $regra = $conn->query("select destaque from produtos where id =".$row['id']);
                                     $regraRow = $regra->fetch_assoc();
                                 ?>
 
@@ -88,7 +124,7 @@ include "../class/connect.php";
                             </button>
                         </td>
                     </tr>    
-                <!-- FIM DO LAÇO -->  
+               <?php } }?>
             </tbody><!-- final corpo da tabela -->
         </table>
     </main>
