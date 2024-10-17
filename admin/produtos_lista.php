@@ -5,7 +5,6 @@ include "acesso_com.php";
 class Listar{
     private $row;
     
-    
     public function listarRotulo($id){
     global $conn;
     $stmt = $conn->prepare("SELECT rotulo FROM vw_produtos WHERE id = ?");
@@ -24,8 +23,6 @@ class Listar{
 }
 
 $listar = new Listar();
-
-
 
 ?>
 
