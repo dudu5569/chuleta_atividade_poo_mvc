@@ -23,7 +23,7 @@ if($_POST){
             echo "<script>window.open('index.php','_self')</script>";
         }
         else{
-            echo "<script>window.open('../cliente/index.php?cliente=".$login."','_self')</script>";
+            echo "<script>window.open('../cliente/index.php?cliente=".$login."','_self')</script>"; 
         }
     }
     else{
